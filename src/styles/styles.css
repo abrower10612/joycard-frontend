@@ -49,8 +49,14 @@ code {
   .issue-container .icon {
     font-size: 2rem;
   }
+  .issue-container .helperText {
+    text-align: leflt;
+  }
   .issue-container .valid-input {
     color: darkgreen;
+  }
+  .issue-container .invalid-input {
+    color: red;
   }
   .issue-container .unselected-option {
     color: #bababa;
@@ -286,12 +292,26 @@ code {
     color: cornflowerblue;
     font-weight: 500;
   }
-  .issue-card-confirm div,
-.hide-issue-card-confirm div {
+  .issue-card-confirm .confirm-grid,
+.hide-issue-card-confirm .confirm-grid {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     margin-right: 50px;
+  }
+  .issue-card-confirm .success-modal,
+.hide-issue-card-confirm .success-modal {
+    font-size: 2rem;
+    color: darkgreen;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px auto;
+  }
+  .issue-card-confirm .success-modal :nth-child(1),
+.hide-issue-card-confirm .success-modal :nth-child(1) {
+    margin-right: 5px;
+    font-size: 2.25rem;
   }
 
   .issue-card-confirm {

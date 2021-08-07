@@ -5,6 +5,7 @@ import IssueCardConfirmState from './IssueCardConfirmState';
 import DigitalInputState from './DigitalInputState';
 import CardNumberState from './CardNumberState';
 import CardAmountState from './CardAmountState';
+import CardConfirmedState from './CardConfirmedState';
 
 const AtomControls = {
     MenuState,
@@ -14,6 +15,7 @@ const AtomControls = {
     DigitalInputState,
     CardNumberState,
     CardAmountState,
+    CardConfirmedState,
 }
 
 export default AtomControls;

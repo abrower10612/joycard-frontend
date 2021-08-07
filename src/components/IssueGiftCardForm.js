@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useRecoilState } from 'recoil';
 import AtomControls from '../atoms/AtomControls';
 import Icons from '../images/Icons';
@@ -13,11 +13,17 @@ const IssueGiftCardForm = () => {
     const [cardNumber, setCardNumber] = useRecoilState(AtomControls.CardNumberState);
     const [cardAmount, setCardAmount] = useRecoilState(AtomControls.CardAmountState);
     const [issueCardConfirmState, setIssueCardConfirmState] = useRecoilState(AtomControls.IssueCardConfirmState);
+    const [confirmed, setConfirmed] = useRecoilState(AtomControls.CardConfirmedState);
 
+    const [invalidMobile, setInvalidMobile] = useState(false);
+    const [invalidEmail, setInvalidEmail] = useState(false);
+    const [invalidNumber, setInvalidNumber] = useState(false);
+    const [invalidAmount, setInvalidAmount] = useState(false);
     
     const [inputValue, setInputValue] = useState("");
     const handleDigitalInput = e => setInputValue(e.target.value);
     const resetDigitalInput = () => setInputValue("");
+    useEffect(() => confirmed && resetDigitalInput());
 
     const [numberValue, setNumberValue] = useState("");
     const handleNumberInput = e => setNumberValue(e.target.value);
@@ -26,45 +32,46 @@ const IssueGiftCardForm = () => {
     const handleAmountInput = e => setCardAmount(e.target.value);
     const resetAmountInput = () => setCardAmount("");
 
-    const options = [
-        {
-            value: "mobile",
-            label: "Mobile"
-        },
-        {
-            value: "email",
-            label: "Email"
+    const checkInputs = () => {
+        if (cardType === "digital" && digitalType === "mobile" && digitalInput.length !== 10) {
+            return (
+                setInvalidMobile(true),
+                console.log("digital mobile input error")
+            )
         }
-    ]
+        setInvalidMobile(false)
 
-    //TODO: Need to move these controls into a separate file?
-    const styles = {
-        control: styles => ({ 
-            ...styles, 
-            backgroundColor: 'none',
-            border: 'none',
-            borderBottom: 'solid 1px gray',
-            borderRadius: 0,
-            width: '190px',
-            fontSize: '1.5rem',
-            boxShadow: 'none',
-            cursor: 'pointer',
-            
-            // **LARGE VIEWPORT** //
-            '@media(min-width: 800px)': {
-                ...styles, 
-                backgroundColor: 'none',
-                border: 'none',
-                borderBottom: 'solid 1px gray',
-                width: '200px',
-                borderRadius: 'none',
-                fontSize: '1.75rem',
-                boxShadow: 'none',
-                height: 'inherit',
-                paddingRight: '20px',
-                cursor: 'pointer'
-            },
-        })
+        if (cardType === "digital" && digitalType === "email" && !digitalInput.includes('@' && '.')) {
+            return (
+                console.log("digital email input error"),
+                setInvalidEmail(true)
+            )
+        }
+        setInvalidEmail(false)
+
+        if (cardNumber.length < 4 || cardNumber.length > 16) {
+            return (
+                setInvalidNumber(true),
+                console.log("card number error")
+            )
+        }
+        setInvalidNumber(false)
+
+        if (parseInt(cardAmount) < 5 || cardAmount.length < 1 || cardAmount.length > 4) {
+            return (
+                console.log("card amount input error"),
+                setInvalidAmount(true)
+            )
+        }
+        setInvalidNumber(false)
+
+        return (
+            setInvalidMobile(false),
+            setInvalidEmail(false),
+            setInvalidNumber(false),
+            setInvalidAmount(false),
+            setIssueCardConfirmState(!issueCardConfirmState)
+        )
     }
 
     return (
@@ -144,7 +151,12 @@ const IssueGiftCardForm = () => {
                         {digitalType === "mobile" 
                         ?
                             <div>
-                                { digitalInput.length === 10
+                                {invalidMobile
+                                ? 
+                                <div className="mobile-icon">
+                                    <Icons.ErrorOutlineIcon className="icon invalid-input"/>
+                                </div>
+                                : digitalInput.length === 10
                                 ?
                                 <div className="mobile-icon ">
                                     <Icons.CheckCircleIcon className="icon valid-input" />
@@ -163,16 +175,24 @@ const IssueGiftCardForm = () => {
                                     type="tel"
                                     label="Mobile Number"
                                     inputProps={{ maxLength: 10 }}
+                                    // helperText={invalidMobile ? "10-digit mobile number required" : "Required"}
+                                    // FormHelperTextProps={invalidMobile ? { className: "invalid-input"} : {className: "helperText"}}
                                     value={inputValue}
                                     onChange={e => {
                                         handleDigitalInput(e)
                                         setDigitalInput(e.target.value)
+                                        e.target.value.length === 10 && setInvalidMobile(false)
                                     }}
                                 />
                             </div>
                         :
                             <div>
-                                { digitalInput.includes('@' && '.')
+                                {invalidEmail 
+                                ? 
+                                <div className="mobile-icon">
+                                    <Icons.ErrorOutlineIcon className="icon invalid-input"/>
+                                </div>
+                                : digitalInput.includes('@' && '.')
                                 ?
                                 <div className="mobile-icon">
                                     <Icons.CheckCircleIcon className="icon valid-input"/>
@@ -196,6 +216,7 @@ const IssueGiftCardForm = () => {
                                     onChange={e => {
                                         handleDigitalInput(e)
                                         setDigitalInput(e.target.value)
+                                        e.target.value.includes('@' && '.') && setInvalidEmail(false)
                                     }}
                                 />
                             </div>
@@ -205,7 +226,12 @@ const IssueGiftCardForm = () => {
 
                 <div className="last-details">Now, just the card details...</div>
                 <div className="cardNumber">
-                    { cardNumber.length >= 4
+                    {invalidNumber
+                    ? 
+                    <div className="mobile-icon">
+                        <Icons.ErrorOutlineIcon className="icon invalid-input"/>
+                    </div>
+                    : cardNumber.length >= 4
                     ?
                     <div className="mobile-icon">
                         <Icons.CheckCircleIcon className="icon valid-input"/>
@@ -239,13 +265,19 @@ const IssueGiftCardForm = () => {
                         onChange={e => {
                             setCardNumber(e.target.value)
                             handleNumberInput(e)
-                            setCardNumber(e.target.value)
+                            e.target.value.length >= 4 && e.target.value.length <= 16 && setInvalidNumber(false)
                         }}
                     />
                 </div>
 
                 <div className="cardAmount">
-                    { cardAmount.length > 0 && parseInt(cardAmount) >= 5 && parseInt(cardAmount) <= 1000
+                    {invalidAmount ?
+                    <div className="mobile-icon">
+                        <Icons.ErrorOutlineIcon className="icon invalid-input"/>
+                    </div>
+                    : cardAmount.length > 0 
+                    && parseInt(cardAmount) >= 5 
+                    && parseInt(cardAmount) <= 1000
                     ?
                     <div className="mobile-icon">
                         <Icons.CheckCircleIcon 
@@ -281,7 +313,11 @@ const IssueGiftCardForm = () => {
                         onChange={e => {
                             setCardAmount(e.target.value)
                             handleAmountInput(e)
-                            setCardAmount(e.target.value)
+                            parseInt(e.target.value) >= 5
+                            && parseInt(e.target.value) <= 1000
+                            && e.target.value.length > 0 
+                            && e.target.value.length <= 4 
+                            && setInvalidAmount(false)
                         }}
                     />
                 </div>
@@ -291,7 +327,9 @@ const IssueGiftCardForm = () => {
                 >
                     <span 
                         className="submit-button"
-                        onClick={() => setIssueCardConfirmState(!issueCardConfirmState)}
+                        onClick={() => {
+                            checkInputs()
+                        }}
                     >Issue Gift Card</span>
                 </div>
             </div>

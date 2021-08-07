@@ -34,8 +34,16 @@
             font-size: 2rem;
         }
 
+        .helperText {
+            text-align: leflt;
+        }
+
         .valid-input {
             color: darkgreen;
+        }
+
+        .invalid-input {
+            color: red;
         }
 
         .unselected-option {
@@ -50,6 +58,14 @@
             :nth-child(1) {
                 margin-right: 2px;
             }
+        }
+
+        .cardMobile {
+
+        }
+
+        .cardEmail {
+
         }
 
         .cardNumber {
