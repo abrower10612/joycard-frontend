@@ -1,0 +1,347 @@
+@media (min-width: 300px) {
+  .modal-background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #bababa90;
+  }
+}
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+@media (min-width: 300px) {
+  .issue-container {
+    padding: 0 20px;
+    font-size: 1.25rem;
+  }
+  .issue-container h1 {
+    font-size: 1.75rem;
+    margin-bottom: 15px;
+  }
+  .issue-container .cardType-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .issue-container .cardType-container span {
+    margin-bottom: 10px;
+  }
+  .issue-container .cardType:nth-of-type(1) {
+    margin-bottom: 10px;
+  }
+  .issue-container .cardType {
+    display: flex;
+    align-items: center;
+  }
+  .issue-container .cardType :nth-child(1) {
+    margin-right: 2px;
+  }
+  .issue-container .icon {
+    font-size: 2rem;
+  }
+  .issue-container .valid-input {
+    color: darkgreen;
+  }
+  .issue-container .unselected-option {
+    color: #bababa;
+  }
+  .issue-container .deliveryType {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .issue-container .deliveryType :nth-child(1) {
+    margin-right: 2px;
+  }
+  .issue-container .cardNumber {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .issue-container .cardNumber label {
+    font-size: 1.25rem;
+  }
+  .issue-container .cardNumber :nth-child(1) {
+    margin-right: 2px;
+  }
+  .issue-container .cardAmount {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-top: 10px;
+  }
+  .issue-container .cardAmount label {
+    font-size: 1.25rem;
+  }
+  .issue-container .cardAmount :nth-child(1) {
+    margin-right: 2px;
+  }
+  .issue-container .last-details {
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+  .issue-container .digitalInputs-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+  .issue-container .digitalInputs-container span {
+    margin-bottom: 10px;
+  }
+  .issue-container .digitalInputs-container div {
+    display: flex;
+    align-items: center;
+  }
+  .issue-container .digitalInputs-container label {
+    font-size: 1.25rem;
+  }
+  .issue-container .digitalInputs-container .mobile-icon {
+    margin-top: 20px;
+    margin-right: 5px;
+  }
+  .issue-container .button-container {
+    display: flex;
+    align-items: flex-end;
+    height: calc(100vh * 0.12);
+  }
+  .issue-container .button-container .submit-button {
+    display: block;
+    height: fit-content;
+    width: 100%;
+    background-color: cornflowerblue;
+    margin-bottom: 10px;
+    padding: 10px 10px;
+    border: solid 2px darkblue;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.5rem;
+    box-shadow: 5px 5px 5px #bababa90;
+  }
+}
+@media (min-width: 300px) {
+  .header-container {
+    height: 85px;
+    display: flex;
+    align-items: center;
+    border-bottom: solid 5px #bababa;
+    position: relative;
+  }
+  .header-container img {
+    width: 18%;
+    position: absolute;
+    left: 10px;
+  }
+  .header-container h1 {
+    margin: 0 auto;
+    padding-left: 20px;
+    font-size: 1.5rem;
+    color: #555555;
+  }
+}
+@media (min-width: 300px) {
+  .burger {
+    position: absolute;
+    top: 30%;
+    right: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 2rem;
+    height: 2rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 20px;
+    z-index: 10;
+  }
+  .burger :focus {
+    outline: none;
+  }
+  .burger div {
+    width: 2rem;
+    height: 0.25rem;
+    background: black;
+    border-radius: 10px;
+    transition: transform 0.3s linear;
+    position: relative;
+    transform-origin: 1px;
+  }
+  .burger .bar1 {
+    transform: rotate(45deg);
+  }
+  .burger .bar2 {
+    opacity: 0;
+  }
+  .burger .bar3 {
+    transform: rotate(-45deg);
+  }
+}
+@media (min-width: 300px) {
+  .show-menu,
+.hide-menu {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #ffffff;
+    z-index: 2;
+  }
+  .show-menu img,
+.hide-menu img {
+    width: 25%;
+    display: block;
+    margin: 20px auto;
+  }
+  .show-menu .menu-items,
+.hide-menu .menu-items {
+    margin-top: 10%;
+    padding: 0 20px;
+    font-size: 1.25rem;
+  }
+  .show-menu .menu-items .active-page > *,
+.hide-menu .menu-items .active-page > * {
+    color: #6495ed;
+    outline: none;
+  }
+  .show-menu .menu-items :hover,
+.hide-menu .menu-items :hover {
+    color: #6495ed;
+  }
+  .show-menu .menu-items div,
+.hide-menu .menu-items div {
+    display: flex;
+    align-items: center;
+  }
+  .show-menu .menu-items > *,
+.hide-menu .menu-items > * {
+    width: 100%;
+    padding: 15px 0;
+    border-bottom: solid 1px #555555;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+  }
+  .show-menu .menu-items > * :nth-child(1),
+.hide-menu .menu-items > * :nth-child(1) {
+    margin-right: 10px;
+    font-size: 1.75rem;
+  }
+
+  .show-menu {
+    bottom: 0;
+    top: 0;
+    transition: 450ms;
+  }
+
+  .hide-menu {
+    bottom: 100%;
+    top: -100%;
+    transition: 450ms;
+  }
+}
+@media (min-width: 300px) {
+  .issue-card-confirm,
+.hide-issue-card-confirm {
+    position: fixed;
+    border: solid 2px cornflowerblue;
+    border-radius: 5px;
+    background-color: #fff;
+    right: 20px;
+    left: 20px;
+  }
+  .issue-card-confirm label,
+.hide-issue-card-confirm label {
+    text-align: left;
+    margin-left: 35px;
+    grid-column: 1;
+    font-weight: 500;
+    margin-bottom: 3px;
+  }
+  .issue-card-confirm span,
+.hide-issue-card-confirm span {
+    display: block;
+    margin: 0 35px;
+    grid-column: 2;
+    margin-bottom: 10px;
+  }
+  .issue-card-confirm div header,
+.hide-issue-card-confirm div header {
+    display: block;
+    margin: 20px;
+    width: 300px;
+    font-size: 1.25rem;
+    color: cornflowerblue;
+    font-weight: 500;
+  }
+  .issue-card-confirm div,
+.hide-issue-card-confirm div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: 50px;
+  }
+
+  .issue-card-confirm {
+    transition: 450ms;
+    position: fixed;
+    z-index: 10;
+  }
+
+  .physical {
+    top: 120px;
+  }
+
+  .digital {
+    top: 60px;
+  }
+
+  .hide-issue-card-confirm {
+    transition: 450ms;
+    top: 100%;
+  }
+
+  .issue-modal-button-container {
+    margin: 0 auto;
+    justify-content: flex-end;
+    height: 100px;
+    width: 100%;
+  }
+
+  .issue-modal-button {
+    border-radius: 5px;
+    border: none;
+    box-shadow: 3px 3px 3px #bababa;
+    padding: 1px 5px;
+    grid-row: 7;
+    width: 200px;
+    height: 30px;
+    margin: 7px auto;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .issue-modal-button:nth-of-type(1) {
+    background: #6495ed;
+    color: white;
+  }
+  .issue-modal-button:nth-of-type(2) {
+    background: #555555;
+    color: white;
+    margin-bottom: 15px;
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */
