@@ -57,6 +57,7 @@
     .hide-issue-card-confirm {
         transition: 450ms;
         top: 100%;
+        z-index: 10;
     }
 
     .issue-modal-button-container {
